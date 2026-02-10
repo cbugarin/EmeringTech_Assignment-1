@@ -88,7 +88,7 @@ export default function AdminDashboard() {
 
       <Row className="g-3">
         <Col lg={6}>
-          <Card className="shadow">
+          <Card className="card-clean">
             <Card.Body>
               <h5 className="mb-3">Add Student</h5>
               <Form onSubmit={addStudent}>

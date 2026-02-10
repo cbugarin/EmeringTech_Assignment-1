@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import { config } from "./config/config.js";
 
 import authRoutes from "./routes/authRoutes.js";
+import studentRoutes from "./routes/studentRoutes.js";
+import courseRoutes from "./routes/courseRoutes.js";
+
 import Student from "./models/Student.js";
 
 const app = express();
@@ -15,6 +18,8 @@ app.use(cors({ origin: config.clientUrl, credentials: true }));
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 
 app.use("/api/auth", authRoutes);
+app.use("/api/students", studentRoutes);
+app.use("/api/courses", courseRoutes);
 
 // TEMP dev-only route to create an admin for testing/demo
 app.post("/api/dev/seed-admin", async (req, res) => {

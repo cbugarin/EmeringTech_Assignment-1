@@ -22,22 +22,30 @@ export default function LoginPage() {
   }
 
   return (
-    <Container className="d-flex justify-content-center mt-5">
-      <Card className="shadow w-100" style={{ maxWidth: 420 }}>
-        <Card.Body>
-          <h3 className="mb-2">Welcome</h3>
-          <p className="text-muted">Login to manage your courses.</p>
+    <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "90vh" }}>
+      <Card className="card-clean w-100" style={{ maxWidth: 440 }}>
+        <Card.Body style={{ padding: 22 }}>
+          <div className="card-header-clean">Login</div>
+          <div className="small-muted mb-3">Use your student number and password.</div>
+
           {err && <Alert variant="danger">{err}</Alert>}
+
           <Form onSubmit={onSubmit}>
             <Form.Group className="mb-3">
               <Form.Label>Student Number</Form.Label>
               <Form.Control value={studentNumber} onChange={(e) => setStudentNumber(e.target.value)} />
             </Form.Group>
+
             <Form.Group className="mb-3">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
+
             <Button type="submit" className="w-100">Login</Button>
+
+            <div className="small-muted mt-3">
+              Demo: <b>admin/Admin1234</b> • <b>1001/Pass1234</b>
+            </div>
           </Form>
         </Card.Body>
       </Card>

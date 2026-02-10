@@ -55,7 +55,7 @@ export default function StudentDashboard() {
   }
 
   return (
-    <Container className="mt-4">
+    <Container className="page">
       <h4 className="mb-3">Student Dashboard</h4>
       {msg && <Alert variant="success">{msg}</Alert>}
       {err && <Alert variant="danger">{err}</Alert>}

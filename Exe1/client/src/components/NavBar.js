@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Navbar, Container, Nav, Button } from "react-bootstrap";
+import { Navbar, Container, Nav, Button, Badge } from "react-bootstrap";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -10,18 +10,31 @@ export default function NavBar() {
   if (!user) return null;
 
   return (
-    <Navbar bg="dark" variant="dark" expand="sm">
+    <Navbar bg="white" expand="sm" className="border-bottom">
       <Container>
-        <Navbar.Brand style={{ cursor: "pointer" }} onClick={() => nav("/")}>
-          SET Student/Course
+        <Navbar.Brand style={{ cursor: "pointer", fontWeight: 800 }} onClick={() => nav("/")}>
+          Student/Course System
         </Navbar.Brand>
+
         <Nav className="me-auto">
+          <Nav.Link onClick={() => nav("/")}>Student</Nav.Link>
           {user.role === "admin" && <Nav.Link onClick={() => nav("/admin")}>Admin</Nav.Link>}
         </Nav>
-        <div className="text-light me-3">{user.firstName} ({user.role})</div>
-        <Button variant="outline-light" size="sm" onClick={async () => { await logout(); nav("/login"); }}>
-          Logout
-        </Button>
+
+        <div className="d-flex align-items-center gap-2">
+          <span className="text-muted">{user.firstName} {user.lastName}</span>
+          <Badge bg={user.role === "admin" ? "dark" : "primary"}>{user.role}</Badge>
+          <Button
+            variant="outline-dark"
+            size="sm"
+            onClick={async () => {
+              await logout();
+              nav("/login");
+            }}
+          >
+            Logout
+          </Button>
+        </div>
       </Container>
     </Navbar>
   );
