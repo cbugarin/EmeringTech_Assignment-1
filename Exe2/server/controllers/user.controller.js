@@ -24,7 +24,7 @@ exports.addGameToMyLibrary = async (req, res) => {
     const user = await User.findById(req.userId);
     if (!user) return res.status(404).json({ message: "User not found" });
 
-    // prevent duplicates
+    //prevent duplicates
     const alreadyAdded = user.games.some((id) => id.toString() === gameId);
     if (alreadyAdded) return res.status(400).json({ message: "Game already in your library" });
 

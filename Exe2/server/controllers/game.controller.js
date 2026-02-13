@@ -1,6 +1,6 @@
 const Game = require("../models/Game");
 
-// Create game
+//Create game
 exports.createGame = async (req, res) => {
   try {
     const game = await Game.create(req.body);
@@ -10,7 +10,7 @@ exports.createGame = async (req, res) => {
   }
 };
 
-// Get all games
+//Get all games
 exports.getAllGames = async (req, res) => {
   try {
     const games = await Game.find();
@@ -20,7 +20,7 @@ exports.getAllGames = async (req, res) => {
   }
 };
 
-// Get single game
+//Get single game
 exports.getGameById = async (req, res) => {
   try {
     const game = await Game.findById(req.params.id);
@@ -31,7 +31,7 @@ exports.getGameById = async (req, res) => {
   }
 };
 
-// Update game
+//Update game
 exports.updateGame = async (req, res) => {
   try {
     const game = await Game.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -42,13 +42,14 @@ exports.updateGame = async (req, res) => {
   }
 };
 
-// Delete game
+//Delete game
 exports.deleteGame = async (req, res) => {
   try {
-    const game = await Game.findByIdAndDelete(req.params.id);
-    if (!game) return res.status(404).json({ message: "Game not found" });
+    const deleted = await Game.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ message: "Game not found" });
     res.json({ message: "Game deleted" });
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+  } catch (e) {
+    res.status(500).json({ message: e.message });
   }
 };
+

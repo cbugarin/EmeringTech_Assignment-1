@@ -14,3 +14,12 @@ export const addGameToMyLibrary = (gameId) =>
   });
 
 export const getMyGames = () => apiFetch("/api/users/me/games");
+export const removeGameFromMyLibrary = (gameId) =>
+  apiFetch(`/api/users/me/games/${gameId}`, {
+    method: "DELETE",
+
+    
+  });
+
+  export const deleteGame = (gameId) =>
+  apiFetch(`/api/games/${gameId}`, { method: "DELETE" });

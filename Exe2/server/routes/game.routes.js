@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const gameController = require("../controllers/game.controller");
 
+//CRUD
 router.post("/", gameController.createGame);
 router.get("/", gameController.getAllGames);
 router.get("/:id", gameController.getGameById);

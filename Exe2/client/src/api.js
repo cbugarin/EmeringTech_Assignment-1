@@ -3,7 +3,7 @@ import { api } from "./api";
 import "./App.css";
 
 export default function App() {
-  const [tab, setTab] = useState("auth"); // auth | games | library
+  const [tab, setTab] = useState("auth"); 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 

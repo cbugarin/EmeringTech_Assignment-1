@@ -22,11 +22,13 @@ exports.register = async (req, res) => {
 
     const hashed = await bcrypt.hash(password, 10);
 
-    const user = await User.create({
-      username,
-      password: hashed,
-      games: [],
-    });
+   const user = await User.create({
+  username,
+  password: hashed,
+  role: username === "admin" ? "admin" : "user", 
+  games: [],
+});
+
 
     return res.status(201).json({ message: "Registered successfully", userId: user._id });
   } catch (err) {
@@ -67,7 +69,8 @@ exports.me = async (req, res) => {
     if (!token) return res.json({ loggedIn: false });
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decoded.id).select("username games");
+   const user = await User.findById(decoded.id).select("username role games");
+
 
     if (!user) return res.json({ loggedIn: false });
 
